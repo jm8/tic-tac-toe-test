@@ -14,23 +14,37 @@ __meta__ = {
 turn_x = ExtResource( 2 )
 turn_o = ExtResource( 3 )
 
-[node name="TurnIndicator" type="TextureRect" parent="."]
-margin_top = 150.0
-margin_right = 300.0
-margin_bottom = 450.0
-size_flags_vertical = 4
+[node name="TurnIndicatorContainer" type="MarginContainer" parent="."]
+margin_right = 92.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+custom_constants/margin_left = 20
+
+[node name="MarginContainer" type="AspectRatioContainer" parent="TurnIndicatorContainer"]
+margin_left = 20.0
+margin_right = 92.0
+margin_bottom = 600.0
+
+[node name="TurnIndicator" type="TextureRect" parent="TurnIndicatorContainer/MarginContainer"]
+margin_top = 264.0
+margin_right = 72.0
+margin_bottom = 336.0
+size_flags_vertical = 3
 texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
-margin_left = 304.0
+margin_left = 96.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 
 [node name="Control" type="Control" parent="AspectRatioContainer"]
-margin_left = 60.0
-margin_right = 660.0
+margin_left = 164.0
+margin_right = 764.0
 margin_bottom = 600.0

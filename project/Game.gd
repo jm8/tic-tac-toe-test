@@ -9,7 +9,7 @@ const MARGIN = .01
 
 const Board = preload("res://Board.tscn")
 onready var board_parent = $AspectRatioContainer/Control
-onready var turn_indicator = $TurnIndicator
+onready var turn_indicator = $TurnIndicatorContainer/MarginContainer/TurnIndicator
 
 var state
 var turn = Logic.State.X setget set_turn
