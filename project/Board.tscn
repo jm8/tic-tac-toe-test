@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Board.gd" type="Script" id=1]
 [ext_resource path="res://assets/board.png" type="Texture" id=2]
+[ext_resource path="res://assets/board_disabled.png" type="Texture" id=3]
 
 [node name="Board" type="AspectRatioContainer"]
 anchor_right = 1.0
@@ -10,6 +11,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+texture_normal = ExtResource( 2 )
+texture_disabled = ExtResource( 3 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 212.0

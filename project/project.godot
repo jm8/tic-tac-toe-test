@@ -13,6 +13,10 @@ config_version=4
 config/name="Tic Tac Toe"
 run/main_scene="res://Main.tscn"
 
+[autoload]
+
+Logic="*res://Logic.gd"
+
 [global]
 
 cam=false
