@@ -1,17 +1,23 @@
-extends AspectRatioContainer
+extends Control
+
+export(Texture) var turn_x
+export(Texture) var turn_o
 
 const ANCHORS = [0, 0.333, 0.667, 1]
 const SHIFTS = [0.03, 0, -0.03]
 const MARGIN = .01
 
 const Board = preload("res://Board.tscn")
+onready var board_parent = $AspectRatioContainer/Control
+onready var turn_indicator = $TurnIndicator
 
 var state
 var turn = Logic.State.X setget set_turn
 
 func set_turn(turn_):
 	turn = turn_
-	for child in $Control.get_children():
+	turn_indicator.texture = turn_x if turn_ == Logic.State.X else turn_o
+	for child in board_parent.get_children():
 		child.turn = turn_
 
 func _ready():
@@ -29,17 +35,17 @@ func _ready():
 			rect.connect("square_filled", self, "_on_Board_square_filled")
 			rect.connect("winner", self, "_on_Board_winner")
 			
-			$Control.add_child(rect)
+			board_parent.add_child(rect)
 
 func _on_Board_square_filled(subrow, subcol):
 	set_turn(Logic.State.X if turn == Logic.State.O else Logic.State.O)
 	
 	if state[subrow][subcol] == Logic.State.EMPTY:
-		for child in $Control.get_children():
+		for child in board_parent.get_children():
 			if state[child.row][child.col] == Logic.State.EMPTY:
 				child.disabled = not(child.row == subrow and child.col == subcol)
 	else:
-		for child in $Control.get_children():
+		for child in board_parent.get_children():
 			if state[child.row][child.col] == Logic.State.EMPTY:
 				child.disabled = false
 		

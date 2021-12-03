@@ -2,6 +2,8 @@ extends AspectRatioContainer
 
 export(Texture) var texture_normal
 export(Texture) var texture_disabled
+export(Texture) var texture_x_win
+export(Texture) var texture_o_win
 
 const ANCHORS = [0, 0.333, 0.667, 1]
 const SHIFTS = [0.03, 0, -0.03]
@@ -16,16 +18,16 @@ var col
 
 func set_turn(turn_):
 	turn = turn_
-	for child in $TextureRect.get_children():
+	for child in $BoardImage.get_children():
 		child.turn = turn_
 		
 func set_disabled(disabled_):
 	disabled = disabled_
-	for child in $TextureRect.get_children():
+	for child in $BoardImage.get_children():
 		child.disabled = disabled_
-	$TextureRect.texture = texture_disabled if disabled_ else texture_normal
+	$BoardImage.texture = texture_disabled if disabled_ else texture_normal
 func _ready():
-	$TextureRect.texture = texture_normal
+	$BoardImage.texture = texture_normal
 	state = Logic.empty_state()
 	for i in range(0, len(ANCHORS)-1):
 		for j in range(0, len(ANCHORS)-1):
@@ -38,7 +40,7 @@ func _ready():
 			rect.subcol = j
 			rect.connect("square_filled", self, "_on_Square_square_filled")
 			
-			$TextureRect.add_child(rect)
+			$BoardImage.add_child(rect)
 			
 signal winner(row, col, winner)
 signal square_filled(subrow, subcol)
@@ -48,5 +50,6 @@ func _on_Square_square_filled(subrow, subcol):
 	var winner = Logic.winner(state)
 	if winner != Logic.State.EMPTY:
 		emit_signal("winner", row, col, winner)
+		$WinnerImage.texture = texture_x_win if winner == Logic.State.X else texture_o_win
 		set_disabled(true)
 	emit_signal("square_filled", subrow, subcol)
