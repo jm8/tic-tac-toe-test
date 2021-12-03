@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Square.gd" type="Script" id=1]
+[ext_resource path="res://assets/hover.png" type="Texture" id=2]
+[ext_resource path="res://assets/x.png" type="Texture" id=4]
+[ext_resource path="res://assets/o.png" type="Texture" id=5]
+
+[node name="Square" type="AspectRatioContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+texture_x = ExtResource( 4 )
+texture_o = ExtResource( 5 )
+
+[node name="Button" type="TextureButton" parent="."]
+margin_left = 212.0
+margin_right = 812.0
+margin_bottom = 600.0
+texture_hover = ExtResource( 2 )
+expand = true
+
+[node name="Value" type="TextureRect" parent="Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

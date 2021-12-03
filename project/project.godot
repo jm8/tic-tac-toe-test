@@ -10,9 +10,8 @@ config_version=4
 
 [application]
 
-config/name="godot-template"
+config/name="Tic Tac Toe"
 run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
 
 [global]
 
@@ -24,4 +23,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/default_clear_color=Color( 1, 1, 1, 1 )
 environment/default_environment="res://default_env.tres"
